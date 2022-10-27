@@ -7,7 +7,10 @@ import unittest
 # HINT: You will have to add https://en.wikipedia.org to the URL retrieved using BeautifulSoup
 def getLink(soup):
     
-    pass
+    tag = soup.find('a', href="/wiki/List_of_American_universities_with_Olympic_medals")
+    link = "https://en.wikipedia.org" + (tag.get("href"))
+    return link
+    
 
 # Task 3: Get the details from the box titled "College/school founding". Get all the college/school names and the year they were
 # founded and organize the same into key-value pairs.
@@ -21,6 +24,9 @@ def main():
     # Task 1: Create a BeautifulSoup object and name it soup. Refer to discussion slides or lecture slides to complete this
 
     #### YOUR CODE HERE####
+    url = "https://en.wikipedia.org/wiki/University_of_Michigan"
+    resp = requests.get(url)
+    soup = BeautifulSoup(resp.content, 'html.parser')
 
     #Call the functions getLink(soup) and getAdmissionsInfo2019(soup) on your soup object.
     getLink(soup)
@@ -53,4 +59,4 @@ class TestAllMethods(unittest.TestCase):
 
 if __name__ == "__main__":
     main()
-    unittest.main(verbosity = 2)
+    #unittest.main(verbosity = 2)
